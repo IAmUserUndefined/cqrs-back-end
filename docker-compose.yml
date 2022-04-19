@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+  database:
+    image: mongo:4.4.6
+    container_name: mongo-container-joao-pedro-mns
+    restart: always
+    volumes: 
+      - "/my/own/datadir:/data/db"
+
+  redis:
+    image: redis
+    container_name: redis-container-joao-pedro-mns
+
+  balance-api: 
+    build: ./balance
+    image: balance-api-image-joao-pedro-mns
+    container_name: balance-api-container-joao-pedro-mns
+    volumes:
+      - "./balance:/home/balance"
+      - "/home/balance/node_modules"
+    ports:
+      - "3333:3333"
+    depends_on:
+      - database
+
+  transaction-api: 
+    build: ./transaction
+    image: transaction-api-image-joao-pedro-mns
+    container_name: transaction-api-container-joao-pedro-mns
+    volumes:
+      - "./transaction:/home/transaction"
+      - "/home/transaction/node_modules"
+    ports:
+      - "3334:3334"
+    depends_on:
+      - database
