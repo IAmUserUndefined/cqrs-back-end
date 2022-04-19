@@ -4,8 +4,8 @@
 
 import { IRedis } from "../../providers/Redis/IRedis";
 import { ICache } from "../../providers/Cache/ICache";
-import { TransactionRepositoryInMemorian } from "../../repository/TransactionRepositoryInMemorian";
-import { BalanceRechargeUnit } from "../../classes/BalanceRechargeUnit/Factory";
+import { IBalanceRechargeUnit } from "../../classes/BalanceRechargeUnit/Interface";
+import { IBalanceRechargeUnitDTO } from "../../classes/BalanceRechargeUnit/DTO";
 import { Facade } from "../../classes/Facade/Factory";
 
 class Cache implements ICache {
@@ -44,10 +44,15 @@ class Redis implements IRedis {
 
 }
 
+class BalanceRechargeUnit implements IBalanceRechargeUnit {
+	async execute({ accountId }: IBalanceRechargeUnitDTO): Promise<number> {
+		return 250;
+	}	
+}
+
 const cache = new Cache();
 const redis = new Redis();
-const repository = new TransactionRepositoryInMemorian();
-const balanceRechargeUnit = new BalanceRechargeUnit(repository);
+const balanceRechargeUnit = new BalanceRechargeUnit();
 const facade = new Facade(redis, cache, balanceRechargeUnit);
 
 describe("Unit Test of Class Facade", () => {

@@ -13,6 +13,10 @@ services:
     image: redis
     container_name: redis-container-joao-pedro-mns
 
+  redis-test:
+    image: redis
+    container_name: redis-test-container-joao-pedro-mns
+
   balance-api: 
     build: ./balance
     image: balance-api-image-joao-pedro-mns

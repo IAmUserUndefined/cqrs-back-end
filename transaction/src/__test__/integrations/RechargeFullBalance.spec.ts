@@ -1,3 +1,5 @@
+jest.setTimeout(15000);
+
 import { TransactionModel } from "../../providers/Database/models/Transaction";
 import { TransactionRepository } from "../../repository/TransactionRepository";
 import { Redis } from "../../providers/Redis/Redis";

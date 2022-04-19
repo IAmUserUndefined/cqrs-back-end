@@ -1,3 +1,5 @@
+jest.setTimeout(15000);
+
 import { TransactionModel } from "../../providers/Database/models/Transaction";
 import { balanceRechargeUnit } from "../../classes/BalanceRechargeUnit/Implementation";
 import { Database } from "../../providers/Database/Database";

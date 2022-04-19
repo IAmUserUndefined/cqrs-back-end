@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+jest.setTimeout(15000);
 
 import { TransactionModel } from "../../providers/Database/models/Transaction";
 import { Database } from "../../providers/Database/Database";

@@ -1,3 +1,5 @@
+jest.setTimeout(15000);
+
 import { TransactionModel } from "../../providers/Database/models/Transaction";
 import { Database } from "../../providers/Database/Database";
 import { Redis } from "../../providers/Redis/Redis";
@@ -9,25 +11,13 @@ import request from "supertest";
 
 import app from "../../app";
 
-describe("E2E", () => {
+describe("Test E2E", () => {
 
 	beforeAll( async () => {
 		await TransactionModel.create({
 			accountId: "10000-000",
 			value: 200,
 			type: "debit",
-		});
-
-		await TransactionModel.create({
-			accountId: "10000-000",
-			value: 100,
-			type: "debit",
-		});
-
-		await TransactionModel.create({
-			accountId: "10000-000",
-			value: 50,
-			type: "credit",
 		});
 	});
 
@@ -43,7 +33,7 @@ describe("E2E", () => {
 			.get("/10000-000");
     
 		expect(response.statusCode).toBe(200);
-		expect(response.body.balance).toBe(250);
+		expect(response.body.balance).toBe(200);
     
 	});
 });

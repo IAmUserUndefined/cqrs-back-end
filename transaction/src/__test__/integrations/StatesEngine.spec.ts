@@ -1,3 +1,5 @@
+jest.setTimeout(15000);
+
 import { RedisMock } from "../../utils/mock/RedisMock";
 import { TransactionRepository } from "../../repository/TransactionRepository";
 import { StatesEngine } from "../../classes/StatesEngine/Factory";

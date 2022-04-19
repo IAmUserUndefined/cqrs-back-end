@@ -1,3 +1,5 @@
+jest.setTimeout(15000);
+
 import { TransactionModel } from "../../providers/Database/models/Transaction";
 import { Database } from "../../providers/Database/Database";
 import { facade } from "../../classes/Facade/Implementation";
@@ -14,18 +16,6 @@ describe("Integration Test of Class Facade", () => {
 			value: 200,
 			type: "debit",
 		});
-
-		await TransactionModel.create({
-			accountId: "10000-000",
-			value: 100,
-			type: "debit",
-		});
-
-		await TransactionModel.create({
-			accountId: "10000-000",
-			value: 50,
-			type: "credit",
-		});
 	});
 
 	afterEach(async () => {
@@ -36,6 +26,6 @@ describe("Integration Test of Class Facade", () => {
    
 	test("should return the balance", async () => {
 		const balance = await facade.execute( { accountId: "10000-000" } );
-		expect(balance).toBe(250);
+		expect(balance).toBe(200);
 	});
 });
