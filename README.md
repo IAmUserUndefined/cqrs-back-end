@@ -1,4 +1,4 @@
-# CQRS - Teste Arch
+# CQRS - Back-end
 
 <p>🚀 Aplicação voltada para criação de transação e consulta saldo</p>
 
@@ -42,12 +42,3 @@ Para rodar os testes do api de saldo rode o seguinte comando:
 ```sh
   docker exec -i balance-api-container-joao-pedro-mns yarn test --watchAll
 ```
-
-# Observações
-
-- A pasta balance contém a api de consulta de saldo e a pasta transaction contém a api de criação de transação
-- O cache na memória está configurado para 300 milessegundos (5 minutos), com isso se forem feitas duas transações em seguida o valor só se atualizará depois de
-cinco minutos, para mudar esse valor vá até a pasta balance/src/classes/Facade/Factory.ts e na função "this.cache.set(`account-${accountId}`, totalBalance, 300);",
-mude o último argumento para 1, você tem que mudar as duas vezes em que essa função é declarada.
-- Se os testes forem feitos sem a flag --watchAll ocorrerá um aviso do jest, pois a conexão do redis não pode ser encerrada, por conta dela estar em um container,
-esse aviso não acarreta em nenhum problema ou bug na aplicação.
